@@ -14,7 +14,7 @@
 ## 🚀 Installation  
 
 1. **Download the Plugin**  
-   - Go to the [Releases](https://github.com/Tiliboyy/DeathZoneDisablerinator3000/releases/tag/1.0.0) page and grab the latest version.  
+   - Go to the [Releases](https://github.com/Tiliboyy/DeathZoneDisablerinator3000/releases) page and grab the latest version.  
 
 2. **Drop It Into Your Server**  
    - Take the `.dll` file and place it lovingly (or evilly) into the `Plugins` folder of your SCP: Secret Laboratory server.  
