@@ -9,6 +9,8 @@ using Exiled.Events.EventArgs.Player;
 
 namespace DeathZoneDisablerinator3000;
 
+using System.ComponentModel;
+
 public class Plugin : Plugin<DeathZoneConfig>
 {
     public override string Name { get; } = "DeathZoneDisablerinator 3000";
@@ -17,15 +19,15 @@ public class Plugin : Plugin<DeathZoneConfig>
         
     public override void OnEnabled()
     {
-        Exiled.Events.Handlers.Player.Hurting += OnHuring;
+        Exiled.Events.Handlers.Player.Hurting += OnHurting;
 
         base.OnEnabled();
     }
         
 
-    private void OnHuring(HurtingEventArgs ev)
+    private void OnHurting(HurtingEventArgs ev)
     {
-        if (ev.IsInstantKill && ev.Player.CurrentRoom != null && ev.DamageHandler.Type == DamageType.Crushed && Config.Rooms.Contains(ev.Player.CurrentRoom.Type))
+        if (ev.IsInstantKill && ev.Player.CurrentRoom != null && ev.DamageHandler.Type == DamageType.Crushed && Config.DisabledRooms.Contains(ev.Player.CurrentRoom.Type))
             ev.IsAllowed = false;
     }
 }
@@ -36,8 +38,9 @@ public class DeathZoneConfig : IConfig
 
     public bool Debug { get; set; } = false;
 
-    public List<RoomType> Rooms { get; set; } = new List<RoomType>()
-    {
+    [Description("The rooms where the deathzones are disabled")]
+    public List<RoomType> DisabledRooms { get; set; } =
+    [
         RoomType.HczCrossRoomWater,
-    };
+    ];
 }
