@@ -28,7 +28,10 @@ public class Plugin : Plugin<DeathZoneConfig>
     private void OnHurting(HurtingEventArgs ev)
     {
         if (ev.IsInstantKill && ev.Player.CurrentRoom != null && ev.DamageHandler.Type == DamageType.Crushed && Config.DisabledRooms.Contains(ev.Player.CurrentRoom.Type))
+        {
             ev.IsAllowed = false;
+            ev.Player.DisableEffect(EffectType.PitDeath);
+        }
     }
 }
 
